@@ -1,0 +1,29 @@
+public class Solution {
+    public List<List<Integer>> combinationSum(int[] can, int target) {
+        List<List<Integer>> rst=new ArrayList<>();
+        if(can.length==0)
+        {
+            return rst;
+        }
+        Arrays.sort(can);
+        back(rst, new ArrayList<>(), can, target, 0, 0);
+        return rst;
+    }
+    void back(List<List<Integer>> rst, List<Integer> arr, int[] can, int target, int sum ,int pos)
+    {
+        if(sum==target)
+        {
+            rst.add(new ArrayList<>(arr));
+        }
+        for(int i=pos; i< can.length; i++)
+        {
+            if(sum+can[i]> target)
+            {
+                break;
+            }
+            arr.add(can[i]);
+            backrst, arr, can, target, sum+can[i], i);
+            arr.remove(arr.size()-1 );
+        }
+    }
+}
