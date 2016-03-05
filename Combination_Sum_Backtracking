@@ -22,7 +22,7 @@ public class Solution {
                 break;
             }
             arr.add(can[i]);
-            backrst, arr, can, target, sum+can[i], i);
+            back(rst, arr, can, target, sum+can[i], i);
             arr.remove(arr.size()-1 );
         }
     }
