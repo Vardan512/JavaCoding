@@ -1,0 +1,100 @@
+/*
+Given two strings aa and bb of equal length, what's the longest string (SS) that can be constructed such that it is a child of both? 
+
+A string xx is said to be a child of a string yy if xx can be formed by deleting 0 or more characters from yy. 
+
+For example, ABCD and ABDC has two children with maximum length 3, ABC and ABD. Note that we will not consider ABCD as a common child because C doesn't occur before D in the second string.
+
+Input format
+
+Two strings, aa and bb, with a newline separating them.
+
+Constraints
+
+All characters are upper cased and lie between ASCII values 65-90. The maximum length of the strings is 5000.
+
+Output format
+
+Length of string SS.
+
+Sample Input #0
+
+HARRY
+SALLY
+Sample Output #0
+
+2
+The longest possible subset of characters that is possible by deleting zero or more characters from HARRY and SALLY is AY, whose length is 2.
+
+Sample Input #1
+
+AA
+BB
+Sample Output #1
+
+0
+AA and BB has no characters in common and hence the output is 0.
+
+Sample Input #2
+
+SHINCHAN
+NOHARAAA
+Sample Output #2
+
+3
+The largest set of characters, in order, between SHINCHAN and NOHARAAA is NHA.
+
+Sample Input #3
+
+ABCDEF
+FBDAMN
+Sample Output #3
+
+2
+BD is the longest child of these strings.
+*/
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner ob=new Scanner(System.in);
+        String s1=ob.next();
+        String s2=ob.next();
+        lisyeah(s1,s2);
+    }
+    static void lisyeah(String s1, String s2)
+    {
+        int l1=s1.length();
+        int l2=s2.length();
+        int[][] a=new int[l1+1][l2+1];
+        for(int i=0;i<(l2+1);i++)
+        {
+            a[0][i]=0;
+        }
+        for(int i=0;i<(l1+1);i++)
+            a[i][0]=0;
+        for(int i=1;i<(l1+1);i++)
+        {
+            for(int j=1;j<(l2+1);j++)
+            {
+                if(s1.charAt(i-1)==s2.charAt(j-1))
+                {
+                    a[i][j]=a[i-1][j-1]+1;
+                }
+                else
+                {
+                    a[i][j]=Math.max(a[i][j-1],a[i-1][j]);
+                }
+            }
+        }
+        System.out.println(a[l1][l2]);
+    }
+    
+}
