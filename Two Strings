@@ -1,0 +1,78 @@
+/* You are given two strings, AA and BB. Find if there is a substring that appears in both AA and BB.
+
+Input Format
+
+Several test cases will be given to you in a single file. The first line of the input will contain a single integer TT, the number of test cases.
+
+Then there will be TT descriptions of the test cases. Each description contains two lines. The first line contains the string AA and the second line contains the string BB.
+
+Output Format
+
+For each test case, display YES (in a newline), if there is a common substring. Otherwise, display NO.
+
+Constraints
+
+All the strings contain only lowercase Latin letters.
+1<=T<=101<=T<=10
+1<=|A|,|B|<=1051<=|A|,|B|<=105
+Sample Input
+
+2
+hello
+world
+hi
+world
+Sample Output
+
+YES
+NO
+Explanation
+
+For the 1st test case, the letter o is common between both strings, hence the answer YES. (Furthermore, the letter l is also common, but you only need to find one common substring.) 
+For the 2nd test case, hi and world do not have a common substring, hence the answer NO.
+*/
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner ob=new Scanner(System.in);
+        int T=ob.nextInt();
+        while(T-->0)
+        {
+            int flag=0;
+            String s1=ob.next();
+            String s2=ob.next();
+            int l1=s1.length();
+            int l2=s2.length();
+            int[] arr1=new int[256];
+            int[] arr2=new int[256];
+            for(int i=0;i<l1;i++)
+            {
+                arr1[s1.charAt(i)]++;
+            }
+            for(int i=0;i<l2;i++)
+            {
+                arr2[s2.charAt(i)]++;
+            }
+            for(int i=0;i<256;i++)
+            {
+                if(arr1[i]!=0 && arr2[i]!=0)
+                {
+                    flag=1;
+                    System.out.println("YES");
+                    break;
+                }
+            }
+            if(flag==0)
+            {
+                System.out.println("NO");
+            }
+        }
+    }
+}
